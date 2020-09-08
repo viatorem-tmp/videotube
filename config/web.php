@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Environment dependent settings
+ * @var array $env
+ */
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -14,7 +19,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'uCw8mUYnzpaqfc9CEWYSfkt9P3iBdOS8',
+            'cookieValidationKey' => $env['cookieValidationKey'],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

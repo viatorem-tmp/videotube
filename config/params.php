@@ -1,7 +1,12 @@
 <?php
 
+/**
+ * Environment dependent settings
+ * @var array $env
+ */
+
 return [
-    'adminEmail' => 'admin@example.com',
-    'senderEmail' => 'noreply@example.com',
-    'senderName' => 'Example.com mailer',
+    'adminEmail' => $env['adminEmail'],
+    'senderEmail' => $env['senderEmail'],
+    'senderName' => $env['senderName'],
 ];

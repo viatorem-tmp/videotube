@@ -1,14 +1,18 @@
 <?php
 
+/**
+ * Environment dependent settings
+ * @var array $env
+ */
+
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '',
+    'dsn' => $env['db']['dsn'],
+    'username' => $env['db']['username'],
+    'password' => $env['db']['password'],
     'charset' => 'utf8',
 
-    // Schema cache options (for production environment)
-    //'enableSchemaCache' => true,
-    //'schemaCacheDuration' => 60,
-    //'schemaCache' => 'cache',
+    'enableSchemaCache' => $env['db']['enableSchemaCache'],
+    'schemaCacheDuration' => $env['db']['schemaCacheDuration'],
+    'schemaCache' => 'cache',
 ];
