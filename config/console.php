@@ -1,5 +1,7 @@
 <?php
 
+$env = require __DIR__ . '/../config/env.php';
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
