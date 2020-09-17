@@ -4,12 +4,13 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use yii\web\NotFoundHttpException;
 use yii\web\Controller;
 use yii\web\Request;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-
-
+use app\models\Video;
+use app\models\SearchQuery;
 
 class VideoController extends Controller
 {
@@ -19,18 +20,15 @@ class VideoController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(Request $request)
     {
-        $videos = [];
-        for ($i = 0; $i < 24; $i++){
-            $videos[] = [
-                'id' => $i
-            ];
-        }
+        $searchQuery = new SearchQuery();
+        $searchQuery->buildByHttpRequest($request);
+
         return $this->render(
             'index',
             [
-                'videos' => $videos,
+                'searchQuery' => $searchQuery
             ]
         );
     }
@@ -40,9 +38,16 @@ class VideoController extends Controller
      *
      * @return Response|string
      */
-    public function actionView()
+    public function actionView($slug)
     {
+        $video = Video::findOne([
+            'slug' => $slug
+        ]);
+        if (empty($video)){
+            throw new NotFoundHttpException();
+        }
         return $this->render('view', [
+            'video' => $video
         ]);
     }
 }
