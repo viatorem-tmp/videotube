@@ -55,6 +55,8 @@ $config = [
             'rules' => [
                 'video' => 'video/index',
                 'video/<slug:[a-zA-Z0-9\-]+>' => 'video/view',
+                'api/video' => 'api-video/index',
+                'api/video/<action>' => 'api-video/<action>',
                 '<action>' => 'site/<action>',
                 '<controller>/<action>' => '<controller>/<action>',
             ],
